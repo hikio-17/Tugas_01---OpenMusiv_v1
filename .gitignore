@@ -1,6 +1,5 @@
 /node_modules
 .env
-/src/api
 /src/exceptions
 /src/services
 /src/utils
