@@ -23,12 +23,12 @@ exports.up = pgm => {
       albumId: {
          type: 'TEXT',
          notNull: true,
-         foreignKey: '"albums(id)"',
+         foreignKey: '"albums(album_id)"',
          references: '"albums"'
       }
    })
 };
 
 exports.down = pgm => {
-   pgm.dropTable('songs')
+   pgm.dropTable('songs1')
 };
