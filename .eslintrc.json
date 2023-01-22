@@ -13,6 +13,6 @@
        "no-console": "off",
        "linebreak-style": "off",
        "no-underscore-dangle": "off",
-       "eslint-disable": "no-unused-vars"
+       "eslint-disable": "no-unused-vars camelcase"
    }
 }
