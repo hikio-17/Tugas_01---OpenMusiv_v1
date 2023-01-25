@@ -1,18 +1,17 @@
 {
-   "env": {
-       "es2021": true,
-       "node": true
-   },
-   "extends": [
-       "airbnb-base"
-   ],
-   "parserOptions": {
-       "ecmaVersion": 2020
-   },
-   "rules": {
-       "no-console": "off",
-       "linebreak-style": "off",
-       "no-underscore-dangle": "off",
-       "eslint-disable": "no-unused-vars camelcase"
-   }
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2020
+    },
+    "rules": {
+        "no-console": "off",
+        "linebreak-style": "off",
+        "no-underscore-dangle": "off"
+    }
 }

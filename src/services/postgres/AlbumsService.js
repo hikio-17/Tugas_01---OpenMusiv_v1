@@ -28,19 +28,43 @@ class AlbumsService {
 
   async getAlbumById(id) {
     const query = {
+      text: 'SELECT * FROM albums NATURAL JOIN songs WHERE songs.album_id = $1 ',
+      values: [id],
+    };
+
+    const query1 = {
       text: 'SELECT * FROM albums WHERE album_id = $1',
       values: [id],
     };
 
-    const result = await this._pool.query(query);
+    const albumWithSongs = await this._pool.query(query);
 
-    if (!result.rows.length) {
+    const albumById = await this._pool.query(query1);
+
+    const listSongs = [];
+
+    const album = albumById.rows.map(mapdDBToModel)[0];
+
+    albumWithSongs.rows.map((s) => listSongs.push({
+      id: s.song_id,
+      title: s.title,
+      performer: s.performer,
+    }));
+
+    const data = {
+      ...album,
+      songs: listSongs,
+    };
+
+    if (!data.songs.length && albumById.rows.length) {
+      return albumById.rows.map(mapdDBToModel)[0];
+    }
+
+    if (!data.songs.length && !albumById.rows.length) {
       throw new NotFoundError('Album tidak ditemukan');
     }
 
-    console.log(result.rows)
-    
-    return result.rows.map(mapdDBToModel)[0];
+    return data;
   }
 
   async editAlbumById(id, { name, year }) {
